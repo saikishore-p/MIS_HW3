@@ -20,9 +20,9 @@ G_reconstruction = np.matrix(Ug[:, :n]) @ np.diag(Sg[:n]) @ np.matrix(Vg[:n, :])
 B_reconstruction = np.matrix(Ub[:, :n]) @ np.diag(Sb[:n]) @ np.matrix(Vb[:n, :])
 
 SVD_80_reconstructed_image = np.concatenate([np.expand_dims(R_reconstruction, axis=2),
-                                          np.expand_dims(G_reconstruction, axis=2),
-                                          np.expand_dims(B_reconstruction, axis=2),
-                                          ], axis=2)
+                                             np.expand_dims(G_reconstruction, axis=2),
+                                             np.expand_dims(B_reconstruction, axis=2),
+                                             ], axis=2)
 
 SVD_error = tl.norm(image - SVD_80_reconstructed_image, order=2, axis=None)
 
@@ -54,8 +54,8 @@ for n in range(0, criteria_HOSVD_error_index):
     HOSVD_reconstructed_image += S[i, j, k] * np.einsum("i, j, k -> ijk", Ur[:, i], Ug[:, j], Ubb[:, k])
 
 HOSVD_error = tl.norm(image - HOSVD_reconstructed_image, order=2, axis=None)
-print('SVD tensor reconstruction error :::: ', SVD_error)
-print('HOSVD tensor reconstruction error for error index 2200 ::::  ', HOSVD_error)
+print('SVD tensor reconstruction error : ', SVD_error)
+print('HOSVD tensor reconstruction error for error index 2200 : ', HOSVD_error)
 
 criteria_HOSVD_error_index = 4000
 HOSVD_reconstructed_image = np.zeros([L, M, P])
@@ -66,5 +66,5 @@ for n in range(0, criteria_HOSVD_error_index):
     HOSVD_reconstructed_image += S[i, j, k] * np.einsum("i, j, k -> ijk", Ur[:, i], Ug[:, j], Ubb[:, k])
 
 HOSVD_error = tl.norm(image - HOSVD_reconstructed_image, order=2, axis=None)
-print('SVD tensor reconstruction error :::: ', SVD_error)
-print('HOSVD tensor reconstruction error for error index 4000 ::::  ', HOSVD_error)
+print('SVD tensor reconstruction error : ', SVD_error)
+print('HOSVD tensor reconstruction error for error index 4000 : ', HOSVD_error)
